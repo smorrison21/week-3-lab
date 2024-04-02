@@ -35,8 +35,24 @@ start_dict = {'noah': '2/23/1999',
 #              'Sarah': datetime.datetime(2001, 9, 1),
 #              'Zach': datetime.datetime(2005, 8, 8)}
 
+new_clean_dates = {}
+def clean_dict(k, v):
+    key_func = k.capitalize()
+    val_func = datetime.strptime(v, "%m/%d/%Y")
+    answer = {key_func(k):val_func(v) for k, v in start_dict.items()}
+    return answer
+clean_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
+print(clean_dict())
 
-
+list_dates = []
+def clean_dict(k, v):
+    k = k.capitalize()
+    v = datetime.strptime(v, "%m/%d/%Y")
+    answer = {k:v}
+    return answer
+new_clean_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
+dict(clean_dates)
+list_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
 #3: A zscore is one term to describe data transformed to have mean zero and
 #standard deviation one, given by: x - x_mean / x_std
 #Write a function that takes any list-like object as a positional argument,
