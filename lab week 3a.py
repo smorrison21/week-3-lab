@@ -35,24 +35,17 @@ start_dict = {'noah': '2/23/1999',
 #              'Sarah': datetime.datetime(2001, 9, 1),
 #              'Zach': datetime.datetime(2005, 8, 8)}
 
-new_clean_dates = {}
-def clean_dict(k, v):
-    key_func = k.capitalize()
-    val_func = datetime.strptime(v, "%m/%d/%Y")
-    answer = {key_func(k):val_func(v) for k, v in start_dict.items()}
-    return answer
-clean_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
-print(clean_dict())
 
-list_dates = []
-def clean_dict(k, v):
+def key_func(k):
     k = k.capitalize()
+    return k
+
+def val_func(v):
     v = datetime.strptime(v, "%m/%d/%Y")
-    answer = {k:v}
-    return answer
-new_clean_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
-dict(clean_dates)
-list_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
+    return v
+
+new_dates = {key_func(k):val_func(v) for k, v in start_dict.items()}
+
 #3: A zscore is one term to describe data transformed to have mean zero and
 #standard deviation one, given by: x - x_mean / x_std
 #Write a function that takes any list-like object as a positional argument,
@@ -60,7 +53,12 @@ list_dates = {clean_dict(k): clean_dict(v) for k, v in start_dict.items()}
 #Use these two imported functions, and test your results on several lists of
 #values
 from numpy import mean, std
+x = (1, 2, 3)
 
+def zscore(y):
+    y = (x-mean(x))/std(x)
+    return y
+print(zscore())
 #4: A modified zscore uses the "median absolute deviation" to better handle
 #outliers in the data, where the MAD is calculated by:
 #  1. x - the median of the series
