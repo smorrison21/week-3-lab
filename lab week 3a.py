@@ -55,10 +55,17 @@ new_dates = {key_func(k):val_func(v) for k, v in start_dict.items()}
 from numpy import mean, std
 x = (1, 2, 3)
 
-def zscore(y):
-    y = (x-mean(x))/std(x)
+
+def zscore(num, average=mean(x), standard=std(x)):
+    y = ((num-average))/standard
     return y
-print(zscore())
+
+w = (4, 5, 6)
+
+w_zscore = zscore(w, average=mean(w), standard=std(w))
+x_zscore = zscore(x)
+f = (200, 45, 72)
+f_zscore = zscore(f, average=mean(f),standard=std(f))
 #4: A modified zscore uses the "median absolute deviation" to better handle
 #outliers in the data, where the MAD is calculated by:
 #  1. x - the median of the series
