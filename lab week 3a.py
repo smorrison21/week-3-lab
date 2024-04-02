@@ -79,4 +79,20 @@ f_zscore = zscore(f, average=mean(f),standard=std(f))
 #version. This function should work in both question 3 and 4 without needing to
 #change how you call it in part 3, because of its default behavior
 from numpy import median, absolute
+x_median = median(x)
+x_1 = x
 
+def mad (num):
+    step_1 = num - median(num)
+    step_2 = absolute(step_1)
+    step_3 = median(step_2)
+    return step_3
+x_mad = mad(x)
+def zscore(num, standard=std(x)):
+    average = num - mean(num)
+    y = average/standard
+    return y
+x_zscore = zscore(x)
+x_mad_zscore = zscore(x, standard=mad(x))
+w_mad_zscore = zscore(w, standard=mad(w))
+f_mad_score = zscore(f, standard=mad(f))
